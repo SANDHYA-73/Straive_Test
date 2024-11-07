@@ -1,32 +1,15 @@
 export default function json2html(data) {
-    // Start the table with the data-user attribute
-    let html = '<table data-user="jeldasandhya3@gmail.com">';
-    
-    // Add the table header
-    html += `
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Gender</th>
-        </tr>
-      </thead>
-      <tbody>`;
+    let table = <table data-user="jeldasandhya3@gmail.com">;
+    table += <thead><tr><th>Name</th><th>Age</th><th>Gender</th></tr></thead><tbody>;
   
-    // Loop through the data and add rows
-    data.forEach(item => {
-      html += `<tr>
-        <td>${item.Name || ''}</td>
-        <td>${item.Age || ''}</td>
-        <td>${item.Gender || ''}</td>
-      </tr>`;
-    });
+    for (const item of data) {
+      table += <tr>;
+      table += <td>${item.Name}</td>;
+      table += <td>${item.Age}</td>;
+      table += item.Gender ? <td>${item.Gender}</td> : <td></td>;
+      table += </tr>;
+    }
   
-    // Close the table tags
-    html += `
-      </tbody>
-    </table>`;
-  
-    return html;
-  }
-  
+    table += </tbody></table>;
+    return table;
+  }
